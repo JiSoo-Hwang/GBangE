@@ -11,7 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 public class Template {
 	
 	//마이바티스 sqlSession 얻어오기
-	public static SqlSession getSession() {
+	public static SqlSession getsqlSession() {
 		
 		//mybatis-config 파일을 읽어서 해당 설정대로 sqlSession 객체를 반환받기
 		SqlSession sqlSession = null;
