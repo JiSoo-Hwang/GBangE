@@ -1,7 +1,55 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
-<properties>
-<entry key="selectCategoryList">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="trainingMapper">
+<resultMap type="training" id="trainingResultSet">
+	<result column="TRAINING_NO" property="trainingNo"></result>
+	<result column="MEMBER_NO" property="trainingWriter"></result>
+	<result column="TRAINING_TITLE" property="trainingTitle"></result>
+	<result column="COUNT" property="count"></result>
+	<result column="TRAINING_KEY" property="trainingKey"></result>
+	<result column="SHOES_NO" property="shoesNo"></result>
+	<result column="TRAINING_DATE" property="trainingDate"></result>
+	<result column="RECORD_DATE" property="recordDate"></result>
+	<result column="TRAINING_PLACE" property="trainingPlace"></result>
+	<result column="TRAINING_TIME" property="trainingTime"></result>
+	<result column="TRAINING_GOAL" property=""></result>
+	<result column="TRAINING_DISTANCE" property="trainingGoal"></result>
+	<result column="WEIGHT" property="weight"></result>
+	<result column="TRAINING_CONTENT" property="trainingContent"></result>
+	<result column="BOARD_ID" property="boardId"></result>
+	<result column="OCSTATUS" property="oCStatus"></result>
+	<result column="STATUS" property="status"></result>
+</resultMap>
+
+<select id="selectCategoryList" resultMap="trainingResultSet">
+SELECT TRAINING_KEY, TRAINING_NAME
+FROM TRAINING_CATEGORY
+</select>
+
+<insert id="insertTraining" parameterType="Training">
+INSERT INTO TRAINING VALUES
+(?
+,?
+,?
+,DEFAULT
+,?
+,?
+,?
+,SYSDATE
+,?
+,?
+,?
+,?
+,?
+,?
+,'2'
+,?
+,'Y'
+,DEFAULT)
+</insert>
+<!-- <entry key="selectCategoryList">
 SELECT TRAINING_KEY, TRAINING_NAME
 FROM TRAINING_CATEGORY
 </entry>
@@ -184,5 +232,5 @@ WHERE T.STATUS = 'Y'
 AND T.TRAINING_CONTENT LIKE ?
 ORDER BY RECORD_DATE DESC)S)
 WHERE RNUM BETWEEN ? AND ?
-</entry>
-</properties>
+</entry> -->
+</mapper>

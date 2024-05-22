@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.kh.training.model.service.TrainingService;
+import com.kh.training.model.service.TrainingServiceImpl;
 import com.kh.training.model.vo.Attachment;
 import com.kh.training.model.vo.Shoes;
 import com.kh.training.model.vo.Training;
@@ -42,8 +43,8 @@ public class TrainingInsertController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// 훈련종류 리스트 DB에서 가져오는 메서드
-		ArrayList<TrainingCategory> tCList = new TrainingService().selectCategoryList();
-		ArrayList<Shoes> sList = new TrainingService().selectShoesList();
+		ArrayList<TrainingCategory> tCList = new TrainingServiceImpl().selectCategoryList();
+		ArrayList<Shoes> sList = new TrainingServiceImpl().selectShoesList();
 		request.setAttribute("tCList", tCList);
 		request.setAttribute("sList", sList);
 
@@ -77,7 +78,8 @@ public class TrainingInsertController extends HttpServlet {
 			double weight = Double.parseDouble(multiRequest.getParameter("weight"));
 			String trainingContent = multiRequest.getParameter("trainingContent");
 			boolean open = multiRequest.getParameter("secret") != null;
-
+			
+			int memberNo = Integer.parseInt(multiRequest.getParameter("memberNo"));
 			Training t = new Training();
 			t.setTrainingTitle(trainingTitle);
 			t.setShoesNo(shoesNo);
@@ -95,7 +97,6 @@ public class TrainingInsertController extends HttpServlet {
 				t.setoCStatus("O");
 			}
 
-			int memberNo = Integer.parseInt(multiRequest.getParameter("memberNo"));
 
 			Attachment at = null;
 			if (multiRequest.getOriginalFileName("uploadImg") != null) {
@@ -104,7 +105,7 @@ public class TrainingInsertController extends HttpServlet {
 				at.setChangeName(multiRequest.getFilesystemName("uploadImg"));
 				at.setFilePath("/views/training/uploadImg/");
 			}
-			int result = new TrainingService().insertTraining(t, at, memberNo);
+			int result = new TrainingServiceImpl().insertTraining(t, at, memberNo);
 
 			HttpSession session = request.getSession();
 			if (result > 0) {
