@@ -1,2 +1,12 @@
-/com/
+/mappers/
+/feed-mapper.xml
+/marathon-mapper.xml
+/member-mapper.xml
+/notice-mapper.xml
+/participate-mapper.xml
+/qna-mapper.xml
+/region-mapper.xml
 /resources/
+/training-mapper.xml
+/mybatis-config.xml
+/com/
