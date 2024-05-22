@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kh.member.model.service.MemberService;
+import com.kh.member.model.service.MemberServiceImpl;
 import com.kh.member.model.vo.Member;
 
 /**
@@ -57,7 +58,7 @@ public class InsertMemberController extends HttpServlet {
 		
 		Member m = new Member(userName,userId,userPwd,gender,address,userPno,shoes,weight);
 		
-		int result = new MemberService().insertMember(m);
+		int result = new MemberServiceImpl().insertMember(m);
 		
 		if(result > 0) {
 			

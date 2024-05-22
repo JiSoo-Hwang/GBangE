@@ -3,9 +3,12 @@ package com.kh.member.model.service;
 import com.kh.member.model.vo.Member;
 
 public interface MemberService {
-	Member loginMember(String userId, String userPwd);
 
+	//회원가입 메소드
 	int insertMember(Member m);
+	
+	//로그인 메소드
+	Member loginMember(String userId, String userPwd);
 
 	boolean checkId(String inputId);
 

@@ -1,5 +1,8 @@
 package com.kh.member.model.service;
 
+import org.apache.ibatis.session.SqlSession;
+
+import com.kh.common.Template;
 import com.kh.member.model.dao.MemberDao;
 import com.kh.member.model.vo.Member;
 
@@ -10,62 +13,64 @@ public class MemberServiceImpl implements MemberService{
 	
 	//회원가입 메소드
 	@Override
+	public int insertMember(Member m) {
+		
+		//Connection 객체의 역할을 하는 sqlSession 객체 얻어오기
+		SqlSession sqlSession = Template.getSession();
+		
+		int result = dao.insertMember(sqlSession, m);
+		
+		if(result>0) {
+			sqlSession.commit();
+		}else {
+			sqlSession.rollback();
+		}
+		return result;
+	}
+
+	//로그인 메소드
+	@Override
 	public Member loginMember(String userId, String userPwd) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int insertMember(Member m) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public boolean checkId(String inputId) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public String findId(String userName, String userPno) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public boolean findPwd(String userId, String userName, String userPno) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public int changePwd(String userId, String userPwd) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public Member updateMember(Member m) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public int updateProfile(Member m) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public boolean checkPno(String pno) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public int mileagePlus(int mileage, String userId) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

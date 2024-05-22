@@ -1,7 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
-<properties>
-
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberMapper">
+<insert id="insertMember" parameterType="Member">
+	INSERT INTO MEMBER(MEMBER_NO, 
+					   MEMBER_NAME, 
+					   MEMBER_ID, 
+					   MEMBER_PWD, 
+					   GENDER, 
+					   ADDRESS, 
+					   MEMBER_PNO, 
+					   SHOES, 
+					   WEIGHT)
+	VALUES(SEQ_MEM.NEXTVAL,
+		   #{memberName},
+		   #{memberId},
+		   #{memberPwd},
+		   #{gender},
+		   #{address},
+		   #{memberPno},
+		   #{shoes},
+		   #{weight})
+</insert>
+<!-- 
 	<entry key="loginMember">
 	SELECT * 
 	FROM MEMBER 
@@ -88,5 +110,5 @@
 	UPDATE MEMBER
 	SET MILEAGE = MILEAGE + ?
 	WHERE MEMBER_ID = ?
-	</entry>
-</properties>
+	</entry> -->
+</mapper>
